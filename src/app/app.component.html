@@ -16,4 +16,20 @@
         </div>
     </div>
 </div> -->
-<app-movie></app-movie>
+<!-- <app-movie></app-movie> -->
+<div class="container">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a [routerLink]="['/Movies']" class="nav-link">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['/Students']" class="nav-link">Students</a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['/Trainers']" class="nav-link">Trainers</a>
+            </li>
+        </ul>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

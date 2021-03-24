@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -9,11 +9,12 @@ export class RatingComponent implements OnInit, OnChanges {
 
   constructor() { }
   ngOnChanges(): void {
-
+    this.pinakas = Array.from(Array(Math.round(this.ratingNo)).keys());
   }
 
-  ratingNo: number = 10;
-  pinakas: number[] = Array.from(Array(this.ratingNo).keys());
+  @Input() ratingNo!: number;
+  pinakas!: number[];
+
   ngOnInit(): void {
   }
 

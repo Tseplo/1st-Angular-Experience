@@ -44,7 +44,7 @@
                     </ul>
                 </td>
                 <td class="align-middle">
-                    <app-rating></app-rating>
+                    <app-rating [ratingNo]='movie.rating'></app-rating>
                 </td>
                 <td *ngIf="hidePrice==true" class="align-middle">{{movie.price|currency:'EUR':'symbol':'1.2'}}</td>
             </tr>

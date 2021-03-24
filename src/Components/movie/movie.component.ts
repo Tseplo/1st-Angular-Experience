@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit, OnDestroy, SimpleChanges } from '@angular/core';
 import { Movie } from './movie';
 import { movies } from './movieMockUp';
+import { MovieService } from "./movie.service";
 
 @Component({
   selector: 'app-movie',
@@ -9,7 +10,7 @@ import { movies } from './movieMockUp';
 })
 export class MovieComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor() {
+  constructor(private service: MovieService) {
     console.log("I'm the constructor");
   }
   ngOnDestroy(): void {
@@ -19,13 +20,15 @@ export class MovieComponent implements OnInit, OnChanges, OnDestroy {
     console.log("I'm the on OnChanges");
   }
   ngOnInit(): void {
+    this.startMovies = this.service.getMovies();
+    this.filteredMovies = this.startMovies;
     console.log("I'm The OnInit");
   }
-  
+
   borderRadius: number = 90;
   maxWidth: number = 100;
-  startMovies: Movie[] = movies;
-  filteredMovies: Movie[] = this.startMovies;
+  startMovies!: Movie[];
+  filteredMovies!: Movie[];
 
   hidePrice: boolean = true;
   togglePrice() {
