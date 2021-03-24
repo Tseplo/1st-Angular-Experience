@@ -1,0 +1,55 @@
+<input [(ngModel)]="borderRadius" type="range" name="borderManipulation" value="" />
+<br>
+<input [(ngModel)]="searchDirector" (input)="filterMovies()" type="text" name="searchDirector" value="" />
+<input [(ngModel)]="searchTitle" (input)="filterMovies()" type="text" name="searchTitle" value=""
+    placeholder="Search Movie" />
+
+<input [(ngModel)]="minYear" (input)="filterMovies()" type="number" name="searchYearMin" value=""
+    placeholder="Min Year" />
+<input [(ngModel)]="maxYear" (input)="filterMovies()" type="number" name="searchYearMax" value=""
+    placeholder="Max Year" />
+<button (click)="togglePrice()" class="btn btn-small btn-dark m-4">{{hidePrice ? "Hide Price" :
+    "ShowPrice"}}
+</button>
+<div *ngIf="filteredMovies.length && filteredMovies;else Mitsos">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr class="text-center">
+                <th>Image</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Director</th>
+                <th>Actors</th>
+                <th>Genres</th>
+                <th>Rating</th>
+                <th *ngIf="hidePrice==true">Price</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let movie of filteredMovies">
+            <tr class="text-center">
+                <td class=""><img class="img-fluid align-middle" [style.border-radius.px]='borderRadius'
+                        [style.max-width.px]='maxWidth' [src]='movie.photoUrl'>
+                </td>
+                <td class="align-middle">{{movie.movieName | uppercase}}</td>
+                <td class="align-middle">{{movie.year}}</td>
+                <td class="align-middle">{{movie.director | addDashBetween}}</td>
+                <td class="align-middle">
+                    <ul class="list-unstyled">
+                        <li *ngFor="let actor of movie.actors">{{actor}}</li>
+                    </ul>
+                </td>
+                <td class="align-middle">
+                    <ul class="list-unstyled" *ngFor="let genre of movie.genres">
+                        <li>{{genre}}</li>
+                    </ul>
+                </td>
+                <td class="align-middle">
+                    <app-rating></app-rating>
+                </td>
+                <td *ngIf="hidePrice==true" class="align-middle">{{movie.price|currency:'EUR':'symbol':'1.2'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #Mitsos>No More Movies</ng-template>

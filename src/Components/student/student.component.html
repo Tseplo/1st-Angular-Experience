@@ -1,0 +1,20 @@
+<div *ngIf="mathites.length && mathites; else Mitsos">
+    <table class="table table-dark table-hover table-border">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mathitis of mathites">
+                <td>{{mathitis.id}}</td>
+                <td>{{mathitis.name}}</td>
+                <td>{{mathitis.score}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ng-template #Mitsos>No more students</ng-template>
